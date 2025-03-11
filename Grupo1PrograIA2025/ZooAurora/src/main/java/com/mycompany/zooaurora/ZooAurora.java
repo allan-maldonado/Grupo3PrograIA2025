@@ -11,6 +11,6 @@ package com.mycompany.zooaurora;
 public class ZooAurora {
 
     public static void main(String[] args) {
-        System.out.println("Hola mundo!");
+        
     }
 }
