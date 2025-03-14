@@ -58,14 +58,21 @@ public class ZooAurora {
                         System.out.println("Bienvenido al detalle de ZOO");
                          
                         
+                        
+                        
                         break;
 
                         case 2:
                         System.out.println("Bienvenido a la Fase I");
                         
+                        
+                        
                         break;
                         case 3:
                         System.out.println("Bienvenido a la FaseII");
+                        
+                        
+                        
                         
                         break;
                         case 4:
@@ -75,7 +82,8 @@ public class ZooAurora {
 
                         default:
                             System.out.println("opcion invalida:");
-                           break;
+                           
+                            break;
                      }
                     }while (menuzoo !=4);
               
@@ -91,3 +99,5 @@ public class ZooAurora {
     scanner.close();    
     }
 }
+
+//prueba de esto sirve
