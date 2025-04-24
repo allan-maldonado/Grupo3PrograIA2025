@@ -15,7 +15,7 @@ public class ZooAurora {
         String claveCorrecta = "1234";
         String usuarioIngresado, claveIngresada;
         int menuzoo;
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); 
 
         System.out.print("Ingrese su usuario: ");
         usuarioIngresado = scanner.nextLine();
