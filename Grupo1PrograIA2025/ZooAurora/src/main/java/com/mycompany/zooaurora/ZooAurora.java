@@ -15,7 +15,7 @@ public class ZooAurora {
         String claveCorrecta = "1234";
         String usuarioIngresado, claveIngresada;
         int menuzoo;
-        Scanner scanner = new Scanner(System.in); 
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Ingrese su usuario: ");
         usuarioIngresado = scanner.nextLine();
@@ -43,7 +43,7 @@ public class ZooAurora {
                     System.out.println("|                                               |");
                     System.out.println("|    2.   Fase I:                               |");
                     System.out.println("|                                               |");
-                    System.out.println("|    3.   Fase II:                              |");
+                    System.out.println("|    3.   Fase II Arreglos:                     |");
                     System.out.println("|                                               |");
                     System.out.println("|    4.   Fase III:                             |");
                     System.out.println("|                                               |");
@@ -54,25 +54,25 @@ public class ZooAurora {
            
             switch (menuzoo) {
                 case 1:
-                    System.out.println("       Bienvenido al detalle de ZOO");
-                    menuZoo(scanner);
+                    System.out.println("       Bienvenido al detalle de ZOO"
+                            + "\n Aqui encontraremos detalles importantes para verificar");
+                    
                     break;
                    
                 case 2:
                     System.out.println("       Bienvenido a la Fase I");
-                    menuFaseI(scanner);
+                    menuZoo(scanner);
                     break;
                    
+                 case 3:
+                    System.out.println("       Bienvenido a la FaseII Arreglos");
                    
-                case 3:
-                    System.out.println("       Bienvenido a la FaseII");
-                   
-                    menuFaseII(scanner);
+                    agregarAnimal(scanner);
                      break; 
                     
                 case 4:
                     System.out.println("       Bienvenido a la Fase III");
-                    menuFaseIII(scanner);                  
+                                      
                     break;
                     
                 case 5:
@@ -90,11 +90,17 @@ public class ZooAurora {
         int opcion;
         do {
             System.out.println("________________________________________________");
-            System.out.println("|                  Menú Zoo:                    |");
+            System.out.println("|               Sub Menú Zoo Fase 1:            |");
             System.out.println("|_______________________________________________|");
             System.out.println("|    1. Agregar nuevo animal                    |");
             System.out.println("|                                               |");
-            System.out.println("|    2. Volver                                  |");
+            System.out.println("|    2. Ver todos los animales                  |");
+            System.out.println("|                                               |");
+            System.out.println("|    3. Guardar a CSV                           |");
+            System.out.println("|                                               |");
+            System.out.println("|    4. Calculo de alimentos                    |");
+            System.out.println("|                                               |");
+            System.out.println("|    5. Salir:                                  |");
             System.out.println("|_______________________________________________|");
             opcion = scanner.nextInt();
 
@@ -103,78 +109,29 @@ public class ZooAurora {
                     agregarAnimal(scanner);
                     break;
                 case 2:
-                   
-                    System.out.println("Regresando al menú principal...");
-                    break;
-               
-                default:
-                    System.out.println("Opción inválida. Intente de nuevo.");
-            }
-        } while (opcion != 2);
-    }
-
-        private static void menuFaseI(Scanner scanner) {
-        int opcion;
-        do {
-            System.out.println("________________________________________________");
-            System.out.println("|                 Menú Fase I:                  |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("|                                               |");
-            System.out.println("|    1. Ver todos los animales                  |");
-            System.out.println("|                                               |");
-            System.out.println("|    2. Volver                                  |");
-            System.out.println("|_______________________________________________|");
-            opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
                    listarAnimales();
+                    
                     break;
-                case 2:
-                   
-                    System.out.println("Regresando al menú principal...");
+                case 3:
+                    exportarCSV();
                     break;
-               
+                case 4:
+                    menuAlimentos(scanner);
+                    break;
                 default:
                     System.out.println("Opción inválida. Intente de nuevo.");
             }
-        } while (opcion !=2 );
+        } while (opcion != 5);
     }
-   private static void menuFaseII(Scanner scanner) {
-        int opcion;
-        do {
-            System.out.println("________________________________________________");
-            System.out.println("|                Menú Fase II:                  |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("|                                               |");
-            System.out.println("|    1. Guardar a CSV                           |");
-            System.out.println("|                                               |");
-            System.out.println("|    2. Volver                                  |");
-            System.out.println("|_______________________________________________|");
-            opcion = scanner.nextInt();
 
-            switch (opcion) {
-                case 1:
-                   exportarCSV();
-                    break;
-                case 2:
-                   
-                    System.out.println("Regresando al menú principal...");
-                    break;
-               
-                default:
-                    System.out.println("Opción inválida. Intente de nuevo.");
-            }
-        } while (opcion !=2 );
-    }
-   
-   private static void menuFaseIII(Scanner scanner) {
+     
+   private static void menuAlimentos(Scanner scanner) {
     boolean continuar = true;
     while (continuar) {
         scanner.nextLine(); // Consumir salto de línea previo
         
             System.out.println("________________________________________________");
-            System.out.println("|               Menú Fase III:                  |");
+            System.out.println("|          Sub Menu Calculo Alimentos:          |");
             System.out.println("|_______________________________________________|");
             System.out.println("| Sub menu para calculo de alimentos a futuro   |");
             System.out.println("|                                               |");
@@ -193,7 +150,7 @@ public class ZooAurora {
 
         if (encontrado != null) {
             System.out.println("________________________________________________");
-            System.out.println("|               Menú Fase III:                  |");
+            System.out.println("|          Sub Menu Calculo Alimentos:          |");
             System.out.println("|_______________________________________________|");
             System.out.println("| Sub menu para calculo de alimentos a futuro   |");
             System.out.println("|                                               |");
@@ -209,7 +166,7 @@ public class ZooAurora {
 
         // Submenú
             System.out.println("________________________________________________");
-            System.out.println("|               Menú Fase III:                  |");
+            System.out.println("|          Sub Menu Calculo Alimentos:          |");
             System.out.println("|_______________________________________________|");
             System.out.println("|                                               |");
             System.out.println("|    1. Calcular para otro animal               |");
@@ -227,30 +184,55 @@ public class ZooAurora {
     }
 }
     private static void agregarAnimal(Scanner scanner) {//se dejo en publica por allan
-        if (animales.size() >= 3) {
+        if (animales.size() >= 10) {
             System.out.println("Ya ha registrado un Mamífero, un Ave y un Reptil. No puede agregar más.");
             return;
         }
        
-        System.out.println("Seleccione el tipo de animal (1. Mamífero, 2. Ave, 3. Reptil): ");
+            System.out.println("________________________________________________");
+            System.out.println("|               Sub Menú Zoo Fase 1:            |");
+            System.out.println("|_______________________________________________|");
+            System.out.println("|    1. Agregar mamifero                        |");
+            System.out.println("|                                               |");
+            System.out.println("|    2. Agregar Ave                             |");
+            System.out.println("|                                               |");
+            System.out.println("|    3. Agregar Reptil                          |");
+            System.out.println("|                                               |");
+            System.out.println("|    4.                     |");
+            System.out.println("|                                               |");
+            System.out.println("|    5.                     |");
+            System.out.println("|                                               |");
+            System.out.println("|    6. Salir:                                  |");
+            System.out.println("|_______________________________________________|");
         int tipo = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea
        
+        System.out.print("Ingrese el ID Animal: ");
+        int IdAnimal = scanner.nextInt();
+        scanner.nextLine();
         System.out.print("Ingrese el nombre del animal: ");
         String nombre = scanner.nextLine();
+        scanner.nextLine();
         System.out.print("Ingrese el consumo diario en libras: ");
         double consumo = scanner.nextDouble();
+        scanner.nextLine();
         //switch para agregar animales y su consumo
         switch (tipo) {
             case 1:
-                animales.add(new Mamifero(nombre, consumo));
+                animales.add(new Mamifero(IdAnimal, nombre, consumo));
                 break;
             case 2:
-                animales.add(new Ave(nombre, consumo));
+                animales.add(new Ave(IdAnimal, nombre, consumo));
                 break;
             case 3:
-                animales.add(new Reptil(nombre, consumo));
+                animales.add(new Reptil(IdAnimal, nombre, consumo));
                 break;
+            case 4:
+                    
+                break;    
+            case 5:
+                   
+                break;    
             default:
                 System.out.println("Tipo inválido.");
         }
@@ -266,75 +248,22 @@ public class ZooAurora {
         }
     }
 
-    private static void exportarCSV() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(ARCHIVO_CSV))) {
-            for (Animal animal : animales) {
-                writer.println(animal.toCSV());
-            }
-            System.out.println("Datos exportados correctamente a " + ARCHIVO_CSV);
-        } catch (IOException e) {
-            System.out.println("Error al exportar datos: " + e.getMessage());
+   private static void exportarCSV() {
+    try (PrintWriter writer = new PrintWriter("animales.csv")) {
+        for (Animal animal : animales) {
+            writer.println(animal.IdAnimal + animal.nombre + "," + animal.consumoDiario);
         }
-    }
- 
-
-           
-}
-
-
-
-
-
-
-// Clase base Animal
-abstract class Animal {
-    protected String nombre;
-    protected String tipo;
-    protected double consumoDiario;
-
-    public Animal(String nombre, String tipo, double consumoDiario) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.consumoDiario = consumoDiario;
-    }
-
-    public abstract void mostrarInfo();
-
-    public String toCSV() {
-        return nombre + "," + tipo + "," + consumoDiario;
+        System.out.println("Datos exportados correctamente.");
+    } catch (Exception e) {
+        System.out.println("Error al exportar: " + e.getMessage());
     }
 }
-
-// Subclases de Animal
-class Mamifero extends Animal {
-    public Mamifero(String nombre, double consumoDiario) {
-        super(nombre, "Mamífero", consumoDiario);
-    }
-
-    @Override
-    public void mostrarInfo() {
-        System.out.println("Mamífero: " + nombre + " | Consumo diario: " + consumoDiario + " libras");
-    }
+public static List<Animal> getAnimales() {
+    return animales;
 }
+    
+//ordenamiento
 
-class Ave extends Animal {
-    public Ave(String nombre, double consumoDiario) {
-        super(nombre, "Ave", consumoDiario);
-    }
 
-    @Override
-    public void mostrarInfo() {
-        System.out.println("Ave: " + nombre + " | Consumo diario: " + consumoDiario + " libras");
-    }
-}
-
-class Reptil extends Animal {
-    public Reptil(String nombre, double consumoDiario) {
-        super(nombre, "Reptil", consumoDiario);
-    }
-
-    @Override
-    public void mostrarInfo() {
-        System.out.println("Reptil: " + nombre + " | Consumo diario: " + consumoDiario + " libras");
-    }
+//recorrido
 }
