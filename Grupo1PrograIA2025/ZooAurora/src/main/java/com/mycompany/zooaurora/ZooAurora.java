@@ -1,14 +1,13 @@
 package com.mycompany.zooaurora;
+
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
 
-
-// Clase principal
 public class ZooAurora {
-    private static List<Animal> animales = new ArrayList<>();
-    private static final String ARCHIVO_CSV = "zoologico.csv";
-   
-   
+    private static Animal[] animales = new Animal[10];
+    private static int indice = 0;
 
     public static void main(String[] args) {
         String usuarioCorrecto = "admin";
@@ -34,236 +33,253 @@ public class ZooAurora {
         } while (!claveIngresada.equals(claveCorrecta));
        
         do {
-                    System.out.println("________________________________________________");
-                    System.out.println("|                                               |");
-                    System.out.println("|        Bienvenido al menú del Zoológico.      |");
-                    System.out.println("|_______________________________________________|");
-                    System.out.println("|                                               |");
-                    System.out.println("|    1.   ZOO                                   |");
-                    System.out.println("|                                               |");
-                    System.out.println("|    2.   Fase I:                               |");
-                    System.out.println("|                                               |");
-                    System.out.println("|    3.   Fase II Arreglos:                     |");
-                    System.out.println("|                                               |");
-                    System.out.println("|    4.   Fase III:                             |");
-                    System.out.println("|                                               |");
-                    System.out.println("|    5.   Salir:                                |");
-                    System.out.println("|                                               |");
-                    System.out.println("|_______________________________________________|");
+            System.out.println("________________________________________________");
+            System.out.println("|                                               |");
+            System.out.println("|        Bienvenido al menú del Zoológico.      |");
+            System.out.println("|_______________________________________________|");
+            System.out.println("|                                               |");
+            System.out.println("|    1.   ZOO                                   |");
+            System.out.println("|                                               |");
+            System.out.println("|    2.   Fase II Arreglos                      |");
+            System.out.println("|                                               |");
+            System.out.println("|    3.   Salir                                 |");
+            System.out.println("|_______________________________________________|");
             menuzoo = scanner.nextInt();
-           
+
             switch (menuzoo) {
                 case 1:
                     System.out.println("       Bienvenido al detalle de ZOO"
                             + "\n Aqui encontraremos detalles importantes para verificar");
                     
                     break;
-                   
+
                 case 2:
-                    System.out.println("       Bienvenido a la Fase I");
-                    menuZoo(scanner);
+                    System.out.println("       Bienvenido a la Fase II Arreglos");
+                    menuArreglos(scanner);
                     break;
-                   
-                 case 3:
-                    System.out.println("       Bienvenido a la FaseII Arreglos");
-                   
-                    agregarAnimal(scanner);
-                     break; 
-                    
-                case 4:
-                    System.out.println("       Bienvenido a la Fase III");
-                                      
-                    break;
-                    
-                case 5:
+                case 3:
                     System.out.println("ESTAMOS POR SALIR, GRACIAS POR LA VISITA.");
                     break;
                 default:
-                    System.out.println("opcion invalida, ingrese una opcino valida");
+                    System.out.println("Opción inválida.");
             }
-        } while (menuzoo != 5);
-       
+        } while (menuzoo != 3);
+
         scanner.close();
     }
 
-    private static void menuZoo(Scanner scanner) {
-        int opcion;
-        do {
-            System.out.println("________________________________________________");
-            System.out.println("|               Sub Menú Zoo Fase 1:            |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("|    1. Agregar nuevo animal                    |");
-            System.out.println("|                                               |");
-            System.out.println("|    2. Ver todos los animales                  |");
-            System.out.println("|                                               |");
-            System.out.println("|    3. Guardar a CSV                           |");
-            System.out.println("|                                               |");
-            System.out.println("|    4. Calculo de alimentos                    |");
-            System.out.println("|                                               |");
-            System.out.println("|    5. Salir:                                  |");
-            System.out.println("|_______________________________________________|");
-            opcion = scanner.nextInt();
+    private static void menuArreglos(Scanner scanner) {
+        boolean continuar = true;
 
-            switch (opcion) {
-                case 1:
-                    agregarAnimal(scanner);
+        while (continuar) {
+            System.out.println("________________________________________________");
+            System.out.println("|               Sub Menú Fase II:               |");
+            System.out.println("|_______________________________________________|");
+            System.out.println("|    a. Agregar Mamífero                        |");
+            System.out.println("|    b. Agregar Ave                             |");
+            System.out.println("|    c. Agregar Reptil                          |");
+            System.out.println("|    d. Ordenar Arreglo                         |");
+            System.out.println("|    e. Mostrar Arreglo                         |");
+            System.out.println("|    f. Salir                                   |");
+            System.out.println("|    g. Guardar en CSV                          |");
+            System.out.println("|    h. Cargar desde CSV                        |");
+            System.out.println("|_______________________________________________|");
+
+            char opcionSubmenu = scanner.next().charAt(0);
+            scanner.nextLine();
+
+            switch (opcionSubmenu) {
+                case 'a':
+                    agregarAnimal(scanner, "Mamífero");
                     break;
-                case 2:
-                   listarAnimales();
-                    
+                case 'b':
+                    agregarAnimal(scanner, "Ave");
                     break;
-                case 3:
-                    exportarCSV();
+                case 'c':
+                    agregarAnimal(scanner, "Reptil");
                     break;
-                case 4:
-                    menuAlimentos(scanner);
+                case 'd':
+                    ordenarArreglo(scanner);
+                    break;
+                case 'e':
+                    mostrarArreglo();
+                    break;
+                case 'f':
+                    continuar = false;
+                    break;
+                case 'g':
+                    guardarEnCSV();
+                    break;
+                case 'h':
+                    cargarDesdeCSV();
                     break;
                 default:
                     System.out.println("Opción inválida. Intente de nuevo.");
             }
-        } while (opcion != 5);
-    }
-
-     
-   private static void menuAlimentos(Scanner scanner) {
-    boolean continuar = true;
-    while (continuar) {
-        scanner.nextLine(); // Consumir salto de línea previo
-        
-            System.out.println("________________________________________________");
-            System.out.println("|          Sub Menu Calculo Alimentos:          |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("| Sub menu para calculo de alimentos a futuro   |");
-            System.out.println("|                                               |");
-            System.out.println("|       Ingrese el nombre del animal            |");
-            System.out.println("|_______________________________________________|");
-        
-        String nombreBuscado = scanner.nextLine();
-
-        Animal encontrado = null;
-        for (Animal animal : animales) {
-            if (animal.nombre.equalsIgnoreCase(nombreBuscado)) {
-                encontrado = animal;
-                break;
-            }
-        }
-
-        if (encontrado != null) {
-            System.out.println("________________________________________________");
-            System.out.println("|          Sub Menu Calculo Alimentos:          |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("| Sub menu para calculo de alimentos a futuro   |");
-            System.out.println("|                                               |");
-            System.out.println("|¿Para cuántos días desea calcular el alimento? |");
-            System.out.println("|                                               |");
-            int dias = scanner.nextInt();
-            System.out.println("|_______________________________________________|");
-            double total = dias * encontrado.consumoDiario;
-            System.out.println("El animal " + encontrado.nombre + " consumirá un total de " + total + " libras en " + dias + " días.");
-        } else {
-            System.out.println("No se encontró ningún animal con el nombre: " + nombreBuscado);
-        }
-
-        // Submenú
-            System.out.println("________________________________________________");
-            System.out.println("|          Sub Menu Calculo Alimentos:          |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("|                                               |");
-            System.out.println("|    1. Calcular para otro animal               |");
-            System.out.println("|                                               |");
-            System.out.println("|    2. Volver                                  |");
-            System.out.println("|_______________________________________________|");
-        System.out.println("\n¿Qué desea hacer ahora?");
-        
-        System.out.print("Ingrese su opción: ");
-        int opcion = scanner.nextInt();
-
-        if (opcion != 1) {
-            continuar = false; // Sale del bucle y vuelve al menú principal
         }
     }
-}
-    private static void agregarAnimal(Scanner scanner) {//se dejo en publica por allan
-        if (animales.size() >= 10) {
-            System.out.println("Ya ha registrado un Mamífero, un Ave y un Reptil. No puede agregar más.");
+
+    private static void agregarAnimal(Scanner scanner, String tipo) {
+        if (indice >= 10) {
+            System.out.println("El array ya está lleno.");
             return;
         }
-       
-            System.out.println("________________________________________________");
-            System.out.println("|               Sub Menú Zoo Fase 1:            |");
-            System.out.println("|_______________________________________________|");
-            System.out.println("|    1. Agregar mamifero                        |");
-            System.out.println("|                                               |");
-            System.out.println("|    2. Agregar Ave                             |");
-            System.out.println("|                                               |");
-            System.out.println("|    3. Agregar Reptil                          |");
-            System.out.println("|                                               |");
-            System.out.println("|    4.                     |");
-            System.out.println("|                                               |");
-            System.out.println("|    5.                     |");
-            System.out.println("|                                               |");
-            System.out.println("|    6. Salir:                                  |");
-            System.out.println("|_______________________________________________|");
-        int tipo = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-       
-        System.out.print("Ingrese el ID Animal: ");
-        int IdAnimal = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Ingrese el nombre del animal: ");
-        String nombre = scanner.nextLine();
-        scanner.nextLine();
-        System.out.print("Ingrese el consumo diario en libras: ");
-        double consumo = scanner.nextDouble();
-        scanner.nextLine();
-        //switch para agregar animales y su consumo
-        switch (tipo) {
-            case 1:
-                animales.add(new Mamifero(IdAnimal, nombre, consumo));
-                break;
-            case 2:
-                animales.add(new Ave(IdAnimal, nombre, consumo));
-                break;
-            case 3:
-                animales.add(new Reptil(IdAnimal, nombre, consumo));
-                break;
-            case 4:
-                    
-                break;    
-            case 5:
-                   
-                break;    
-            default:
-                System.out.println("Tipo inválido.");
-        }
-    }
 
-    private static void listarAnimales() {
-        if (animales.isEmpty()) {
-            System.out.println("No hay animales registrados.");
-        } else {
-            for (Animal animal : animales) {
-                animal.mostrarInfo();
+        String idAnimal;
+        boolean idUnico = false;
+
+        while (!idUnico) {
+            System.out.print("Ingrese el ID del Animal: ");
+            idAnimal = scanner.nextLine();
+
+            boolean idExiste = false;
+            for (int i = 0; i < indice; i++) {
+                if (animales[i].getIdAnimal().equalsIgnoreCase(idAnimal)) {
+                    idExiste = true;
+                    break;
+                }
+            }
+
+            if (idExiste) {
+                System.out.println("El identificador es único para cada animal. Por favor, ingrese otro ID.");
+            } else {
+                idUnico = true;
+                System.out.print("Ingrese el nombre del animal: ");
+                String nombre = scanner.nextLine();
+                System.out.print("Ingrese el consumo diario en libras: ");
+                double consumoDiario = scanner.nextDouble();
+                scanner.nextLine();
+
+                switch (tipo) {
+                    case "Mamífero":
+                        animales[indice] = new Mamifero(idAnimal, nombre, consumoDiario);
+                        break;
+                    case "Ave":
+                        animales[indice] = new Ave(idAnimal, nombre, consumoDiario);
+                        break;
+                    case "Reptil":
+                        animales[indice] = new Reptil(idAnimal, nombre, consumoDiario);
+                        break;
+                }
+                indice++;
+                System.out.println(tipo + " agregado exitosamente.");
+                System.out.print("¿Desea agregar otro animal? (si/no): ");
+                String respuesta = scanner.nextLine();
+                if (respuesta.equalsIgnoreCase("no")) {
+                    return;
+                }
             }
         }
     }
 
-   private static void exportarCSV() {
-    try (PrintWriter writer = new PrintWriter("animales.csv")) {
-        for (Animal animal : animales) {
-            writer.println(animal.IdAnimal + animal.nombre + "," + animal.consumoDiario);
+    private static void ordenarArreglo(Scanner scanner) {
+        if (indice == 0) {
+            System.out.println("No hay animales para ordenar.");
+            return;
         }
-        System.out.println("Datos exportados correctamente.");
-    } catch (Exception e) {
-        System.out.println("Error al exportar: " + e.getMessage());
+
+        System.out.println("Ordenar por ID Animal:");
+        System.out.println("1. Ascendente");
+        System.out.println("2. Descendente");
+        int opcionOrden = scanner.nextInt();
+        scanner.nextLine();
+
+        Comparator<Animal> comparador;
+        if (opcionOrden == 1) {
+            comparador = Comparator.comparing(Animal::getIdAnimal, String.CASE_INSENSITIVE_ORDER);
+        } else if (opcionOrden == 2) {
+            comparador = Comparator.comparing(Animal::getIdAnimal, String.CASE_INSENSITIVE_ORDER.reversed());
+        } else {
+            System.out.println("Opción inválida.");
+            return;
+        }
+
+        Arrays.sort(animales, 0, indice, comparador);
+        System.out.println("Arreglo ordenado.");
     }
-}
-public static List<Animal> getAnimales() {
-    return animales;
-}
-    
-//ordenamiento
 
+     private static void mostrarArreglo() {
+        if (indice == 0) {
+            System.out.println("No hay animales registrados.");
+        } else {
+            System.out.println("Animales registrados en el arreglo:");
+            for (int i = 0; i < indice; i++) {
+                Animal a = animales[i];
+                String tipo = a instanceof Mamifero ? "Mam\u00edfero" :
+                              a instanceof Ave ? "Ave" :
+                              a instanceof Reptil ? "Reptil" : "Desconocido";
+                System.out.printf("ID: %s | Nombre: %s | Consumo diario: %.2f lbs | Tipo: %s%n",
+                                  a.getIdAnimal(), a.getNombre(), a.getConsumoDiario(), tipo);
+            }
+        }
+    }
 
-//recorrido
+    private static void guardarEnCSV() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("animales.csv"))) {
+            writer.println("ID,Nombre,Consumo Diario,Tipo");
+
+            for (int i = 0; i < indice; i++) {
+                Animal a = animales[i];
+                if (a != null) {
+                    writer.println(a.getIdAnimal() + "," + a.getNombre() + "," +
+                                   a.getConsumoDiario() + "," + a.getClass().getSimpleName());
+                }
+            }
+
+            System.out.println("Animales guardados exitosamente en animales.csv.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar los datos: " + e.getMessage());
+        }
+    }
+
+    private static void cargarDesdeCSV() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("animales.csv"))) {
+            String linea;
+            reader.readLine(); // Saltar encabezado
+
+            while ((linea = reader.readLine()) != null && indice < animales.length) {
+                String[] datos = linea.split(",");
+
+                if (datos.length == 4) {
+                    String id = datos[0];
+                    String nombre = datos[1];
+                    double consumo = Double.parseDouble(datos[2]);
+                    String tipo = datos[3];
+
+                    // Verificar unicidad del ID
+                    boolean idExiste = false;
+                    for (int i = 0; i < indice; i++) {
+                        if (animales[i].getIdAnimal().equalsIgnoreCase(id)) {
+                            idExiste = true;
+                            break;
+                        }
+                    }
+
+                    if (!idExiste) {
+                        switch (tipo) {
+                            case "Mamifero":
+                                animales[indice] = new Mamifero(id, nombre, consumo);
+                                break;
+                            case "Ave":
+                                animales[indice] = new Ave(id, nombre, consumo);
+                                break;
+                            case "Reptil":
+                                animales[indice] = new Reptil(id, nombre, consumo);
+                                break;
+                            default:
+                                System.out.println("Tipo desconocido: " + tipo);
+                                continue;
+                        }
+                        indice++;
+                    } else {
+                        System.out.println("ID duplicado encontrado: " + id + " (omitido)");
+                    }
+                }
+            }
+
+            System.out.println("Animales cargados desde el archivo.");
+        } catch (Exception e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
 }
