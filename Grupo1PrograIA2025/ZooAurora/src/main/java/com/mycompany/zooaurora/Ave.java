@@ -1,21 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.zooaurora;
 
-/**
- *
- * @author Tecno
- */
-class Ave extends Animal {
-    public Ave(int IdAnimal, String nombre, double consumoDiario) {
-        super(IdAnimal, nombre, "Ave", consumoDiario);
+public class Ave extends Animal {
+    public Ave(String idAnimal, String nombre, double consumoDiario) {
+        super(idAnimal, nombre, "Ave", consumoDiario);
     }
 
     @Override
     public void mostrarInfo() {
-        System.out.println("El ID es "+IdAnimal+"tipo Ave: " + nombre + " | Consumo diario: " + consumoDiario + " libras");
+        System.out.println("El ID es " + getIdAnimal() + " | Tipo: Ave | Nombre: " + getNombre() + " | Consumo diario: " + getConsumoDiario() + " libras");
+    }
+
+    @Override
+    public String getIdAnimal() {
+        return super.getIdAnimal();
+    }
+
+    @Override
+    public String getNombre() {
+        return super.getNombre();
+    }
+
+    @Override
+    public double getConsumoDiario() {
+        return super.getConsumoDiario();
     }
 }
-
