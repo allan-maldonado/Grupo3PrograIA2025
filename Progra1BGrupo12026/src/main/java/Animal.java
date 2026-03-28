@@ -15,7 +15,7 @@ public class Animal {
     private double consumo_Diario;
     private String tipo_Dieta;
    
-    public Animal(String nombre, int edad, double peso, double consumo_Diario, String tipo_Dieta); {
+    public Animal(String nombre, int edad, double peso, double consumo_Diario, String tipo_Dieta) {
 
     this.nombre = nombre;
     this.edad = edad;
@@ -24,8 +24,13 @@ public class Animal {
     this.tipo_Dieta = tipo_Dieta;
 
 }  
+
+public String mostrarDatos() {
+    return "Nombre: " + nombre + "\nEdad: " + edad + " años\nPeso: " + peso + " kg\nConsumo Diario: " + consumo_Diario + " kg\nTipo de Dieta: " + tipo_Dieta;
     
     
     
     
+}
+
 }
