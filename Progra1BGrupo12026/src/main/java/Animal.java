@@ -26,7 +26,8 @@ public class Animal {
 }  
 
 public String mostrarDatos() {
-    return "Nombre: " + nombre + "\nEdad: " + edad + " años\nPeso: " + peso + " kg\nConsumo Diario: " + consumo_Diario + " kg\nTipo de Dieta: " + tipo_Dieta;
+    return "Nombre: " + nombre + "Edad: " + edad + "Peso: " + peso + "Consumo_Diario: "
+            + consumo_Diario + "Tipo de Dieta: " + tipo_Dieta;
     
     
     
