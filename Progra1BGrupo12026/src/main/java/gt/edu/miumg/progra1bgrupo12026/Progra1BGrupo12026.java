@@ -19,11 +19,12 @@ public class Progra1BGrupo12026{
         {
         
             
-            
+            System.out.println("Hola");
             
             
             
             do{
+                
                 
                 System.out.println("***************BIENVENIDOS AL ZOOLOGICO GT**************");
                 System.out.println("****SISTEMA DE GESTION ZOOLOGICO LA AURORA GUATEMALA****");
