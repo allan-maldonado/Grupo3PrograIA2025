@@ -19,7 +19,7 @@ public class Progra1BGrupo12026{
         {
         
             
-            System.out.println("Hola");
+            System.out.println("HOLA");
             
             
             
