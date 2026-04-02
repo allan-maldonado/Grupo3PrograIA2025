@@ -1,5 +1,4 @@
 package gt.edu.miumg.progra1bgrupo12026;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,20 +18,24 @@ public class Progra1BGrupo12026{
         {
         
             
-            System.out.println("HOLA");
-            
             
             
             do{
                 
                 
-                System.out.println("***************BIENVENIDOS AL ZOOLOGICO GT**************");
-                System.out.println("****SISTEMA DE GESTION ZOOLOGICO LA AURORA GUATEMALA****");
+                System.out.println("**********************************************************************************");
+                System.out.println("*                         BIENVENIDOS AL ZOOLOGICO GT                            *");
+                System.out.println("*             SISTEMA DE GESTION ZOOLOGICO LA AURORA GUATEMALA                   *");
+                System.out.println("**********************************************************************************");
+               
+                
                 System.out.println("");
-                System.out.println("1) ZOO");
-                System.out.println("2) Fase II");
-                System.out.println("3) Fase III");
-                System.out.println("4) Salir");
+                System.out.println("***********************************");
+                System.out.println("*             1) ZOO              *");
+                System.out.println("*             2) FASE II          *");
+                System.out.println("*             3) FASE III         *");
+                System.out.println("              4) SALIR            *");
+                System.out.println("***********************************");
                 System.out.println("   SELECCIONA LA OPCION:  ");
                 System.out.println("");
                 
@@ -87,7 +90,7 @@ public class Progra1BGrupo12026{
                 System.out.println("1) Ingrese nuevo animal");
                 System.out.println("2) Ver todos los animales ");
                 System.out.println("3) Expotarlos a CVS: ");
-                System.out.println("4) salir:");
+                System.out.println("4) Regrear al Menu Principal:");
                 
                 
                 opcion=sc.nextInt();
